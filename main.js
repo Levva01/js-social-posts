@@ -8,7 +8,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=15"
         },
         "likes": 80,
-        "created": "2021-06-25"
+        "created": "25-06-2021"
     },
     {
         "id": 2,
@@ -19,7 +19,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=10"
         },
         "likes": 120,
-        "created": "2021-09-03"
+        "created": "03-09-2021"
     },
     {
         "id": 3,
@@ -30,7 +30,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=20"
         },
         "likes": 78,
-        "created": "2021-05-15"
+        "created": "15-05-2021"
     },
     {
         "id": 4,
@@ -41,7 +41,7 @@ const posts = [
             "image": null
         },
         "likes": 56,
-        "created": "2021-04-03"
+        "created": "03-04-2021"
     },
     {
         "id": 5,
@@ -52,7 +52,7 @@ const posts = [
             "image": "https://unsplash.it/300/300?image=29"
         },
         "likes": 95,
-        "created": "2021-03-05"
+        "created": "05-03-2021"
     }
 ];
 
@@ -81,7 +81,7 @@ for(let i = 0; i < posts.length; i++){
         <div class="post__footer">
             <div class="likes js-likes">
                 <div class="likes__cta">
-                    <a onmouseover="likeClicked()" id="${i}" class="like-button  js-like-button" data-postid="${posts[i].id}">
+                    <a id="${i}" class="like-button  js-like-button" data-postid="${posts[i].id}">
                         <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                         <span class="like-button__label">Mi Piace</span>
                     </a>
@@ -102,21 +102,38 @@ for(let i = 0; i < posts.length; i++){
 
 
 function likeClicked(){
+
+    let temp;
     
     for(let i = 0; i < posts.length; i++){
 
-        let temp;
+        if(document.getElementById(`${i}`).classList.contains("like-button--liked") == true){
 
-        document.getElementById(i).addEventListener("click", function(){
+                document.getElementById(i).addEventListener("click", function(){
 
-            document.getElementById(i).classList.add("like-button--liked");
-            
-            temp = posts[i].likes;
-            temp = temp + 1;
+                document.getElementById(i).classList.remove("like-button--liked");
+                
+                temp = posts[i].likes;
+                temp = temp;
 
-            document.getElementById(`like-counter-${i}`).innerHTML = temp;
+                document.getElementById(`like-counter-${i}`).innerHTML = temp;
 
-        });
+            });
+
+        } else {
+
+            document.getElementById(i).addEventListener("click", function(){
+
+                document.getElementById(i).classList.add("like-button--liked");
+                
+                temp = posts[i].likes;
+                temp = temp + 1;
+    
+                document.getElementById(`like-counter-${i}`).innerHTML = temp;
+    
+            });
+
+        }
 
     }
 
