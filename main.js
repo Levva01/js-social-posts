@@ -101,40 +101,31 @@ for(let i = 0; i < posts.length; i++){
 
 
 
-function likeClicked(){
 
     let temp;
     
     for(let i = 0; i < posts.length; i++){
 
-        if(document.getElementById(`${i}`).classList.contains("like-button--liked") == true){
+        document.getElementById(i).addEventListener("click", function(){
 
-                document.getElementById(i).addEventListener("click", function(){
+            if(document.getElementById(`${i}`).classList.contains("like-button--liked") == true){
 
-                document.getElementById(i).classList.remove("like-button--liked");
-                
-                temp = posts[i].likes;
-                temp = temp;
+                    document.getElementById(i).classList.remove("like-button--liked");
+                    
+                    temp = posts[i].likes;
+                    temp = temp;
 
-                document.getElementById(`like-counter-${i}`).innerHTML = temp;
+                    document.getElementById(`like-counter-${i}`).innerHTML = temp;
 
-            });
+            } else {
 
-        } else {
+                    document.getElementById(i).classList.add("like-button--liked");
+                    
+                    temp = posts[i].likes;
+                    temp = temp + 1;
+        
+                    document.getElementById(`like-counter-${i}`).innerHTML = temp;
 
-            document.getElementById(i).addEventListener("click", function(){
-
-                document.getElementById(i).classList.add("like-button--liked");
-                
-                temp = posts[i].likes;
-                temp = temp + 1;
-    
-                document.getElementById(`like-counter-${i}`).innerHTML = temp;
-    
-            });
-
-        }
-
+            }
+        });
     }
-
-}
